@@ -9,3 +9,4 @@ coverage/
 run/
 .DS_Store
 *.swp
+app/config/index.js
