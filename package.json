@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "egg": "^1.8.0",
+    "egg-mysql": "^3.0.0",
     "egg-scripts": "^1.2.0"
   },
   "devDependencies": {
@@ -21,7 +22,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon",
+    "start": "EGG_SERVER_ENV=pro egg-scripts start --daemon",
     "stop": "egg-scripts stop",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
