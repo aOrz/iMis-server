@@ -23,6 +23,10 @@ module.exports = appInfo => {
       database: 'imis',
     },
   };
-
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
   return config;
 };

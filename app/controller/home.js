@@ -3,7 +3,7 @@
 module.exports = app => {
   class HomeController extends app.Controller {
     * index() {
-      this.ctx.body = 'hi, eggssssssssswww';
+      this.ctx.body = JSON.stringify(this.ctx.user);
     }
   }
   return HomeController;

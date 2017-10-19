@@ -2,9 +2,10 @@
 module.exports = function auth(params) {
   // let that = this;
   return async (ctx, next) => {
-    console.log(ctx.query);
-    if (ctx.query.token) {
-      console.log(ctx.app.mysql)
+    const { token } = ctx.query;
+    const user = await ctx.app.mysql.get('user', { server_token: token });
+    if (token && user) {
+      ctx.user = user;
       await next();
     } else {
       ctx.body = {
