@@ -8,21 +8,23 @@ module.exports = function auth() {
       options.server_token = token;
     } else {
       options.app_token = token;
-    } else {
+    }
+    if (!Object.keys(options).length) {
       ctx.body = {
         code: 1,
         error: 'login error,缺少token 或者 type',
       };
-    }
-    const user = await ctx.app.mysql.get('user', options);
-    if (token && user) {
-      ctx.user = user;
-      await next();
     } else {
-      ctx.body = {
-        code: 1,
-        error: 'login error',
-      };
+      const user = await ctx.app.mysql.get('user', options);
+      if (token && user) {
+        ctx.user = user;
+        await next();
+      } else {
+        ctx.body = {
+          code: 1,
+          error: 'login error',
+        };
+      }
     }
   };
 };
