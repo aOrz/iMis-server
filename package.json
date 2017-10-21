@@ -1,6 +1,6 @@
 {
-  "name": "iMis-server",
-  "version": "1.0.0",
+  "name": "imis-server",
+  "version": "0.0.1",
   "description": "个人 mis",
   "private": true,
   "dependencies": {
@@ -41,5 +41,12 @@
     "url": ""
   },
   "author": "rememberwz@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "main": ".autod.conf.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "imis-server"
+  ]
 }

@@ -1,9 +1,15 @@
 'use strict';
-module.exports = function auth(params) {
+module.exports = function auth() {
   // let that = this;
   return async (ctx, next) => {
-    const { token } = ctx.query;
-    const user = await ctx.app.mysql.get('user', { server_token: token });
+    const { token, type } = ctx.request.header;
+    const options = {};
+    if (type === 'server') {
+      options.server_token = token;
+    } else {
+      options.app_token = token;
+    }
+    const user = await ctx.app.mysql.get('user', options);
     if (token && user) {
       ctx.user = user;
       await next();
