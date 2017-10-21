@@ -28,7 +28,7 @@ module.exports = app => {
       const { type, page = 0 } = params;
       const where = { userid };
       if (type) {
-        where.userid = userid;
+        where.type = type;
       }
       const results = await this.app.mysql.select('logs', {
         // 搜索 post 表
@@ -36,7 +36,7 @@ module.exports = app => {
         columns: [ 'notice', 'title', 'logs', 'type', 'creat_time' ], // 要查询的表字段
         orders: [[ 'creat_time', 'desc' ]], // 排序方式
         limit: 20, // 返回数据量
-        offset: page, // 数据偏移量
+        offset: page * 20, // 数据偏移量
       });
       this.ctx.body = {
         code: 200,
