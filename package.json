@@ -4,20 +4,20 @@
   "description": "个人 mis",
   "private": true,
   "dependencies": {
-    "egg": "^1.8.0",
+    "egg": "^1.9.0",
     "egg-mysql": "^3.0.0",
-    "egg-scripts": "^1.2.0",
+    "egg-scripts": "^2.1.0",
     "getui-rest": "^0.4.7",
     "moment": "^2.19.1"
   },
   "devDependencies": {
-    "autod": "^2.9.0",
+    "autod": "^2.10.1",
     "autod-egg": "^1.0.0",
-    "egg-bin": "^4.3.0",
+    "egg-bin": "^4.3.5",
     "egg-ci": "^1.8.0",
-    "egg-mock": "^3.12.0",
-    "eslint": "^4.7.0",
-    "eslint-config-egg": "^5.1.0",
+    "egg-mock": "^3.13.1",
+    "eslint": "^4.9.0",
+    "eslint-config-egg": "^5.1.1",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
@@ -33,7 +33,8 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "reload": "egg-scripts stop && EGG_SERVER_ENV=pro egg-scripts start --daemon"
   },
   "ci": {
     "version": "6, 8"
