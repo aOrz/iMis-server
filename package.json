@@ -6,7 +6,8 @@
   "dependencies": {
     "egg": "^1.8.0",
     "egg-mysql": "^3.0.0",
-    "egg-scripts": "^1.2.0"
+    "egg-scripts": "^1.2.0",
+    "moment": "^2.19.1"
   },
   "devDependencies": {
     "autod": "^2.9.0",

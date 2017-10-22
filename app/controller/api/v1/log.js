@@ -1,5 +1,5 @@
 'use strict';
-
+const moment = require('moment');
 module.exports = app => {
   class LogController extends app.Controller {
     async create() {
@@ -30,13 +30,17 @@ module.exports = app => {
       if (type) {
         where.type = type;
       }
-      const results = await this.app.mysql.select('logs', {
+      let results = await this.app.mysql.select('logs', {
         // 搜索 post 表
         where, // WHERE 条件
-        columns: [ 'notice', 'title', 'logs', 'type', 'creat_time' ], // 要查询的表字段
-        orders: [[ 'creat_time', 'desc' ]], // 排序方式
+        columns: [ 'id', 'notice', 'title', 'logs', 'type', 'creat_time' ], // 要查询的表字段
+        orders: [[ 'id', 'desc' ]], // 排序方式
         limit: 20, // 返回数据量
         offset: page * 20, // 数据偏移量
+      });
+      results = results.map(item => {
+        item.creat_time = moment(item.creat_time).format('YYYY-M-D HH:mm:ss');
+        return item;
       });
       this.ctx.body = {
         code: 200,
