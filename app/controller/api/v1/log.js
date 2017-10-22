@@ -9,6 +9,7 @@ module.exports = app => {
       const { userid } = this.ctx.user;
       if (notice) {
         await ctx.service.ftqq.send(title, logs);
+        await ctx.service.getui.send(title, logs);
       }
       this.app.mysql.insert('logs', {
         type,

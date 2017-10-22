@@ -7,6 +7,7 @@
     "egg": "^1.8.0",
     "egg-mysql": "^3.0.0",
     "egg-scripts": "^1.2.0",
+    "getui-rest": "^0.4.7",
     "moment": "^2.19.1"
   },
   "devDependencies": {
