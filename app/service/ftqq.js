@@ -8,7 +8,7 @@ module.exports = app => {
         // console.log(test, 'ghgjkjkj')
         let { ftqq_token } = this.ctx.user;
         if (type === 'sc') {
-          http.get(`http://sc.ftqq.com/${ftqq_token}.send?text=${text}&desp=${desp}`, res => {
+          http.get(`http://sc.ftqq.com/${ftqq_token}.send?text=${encodeURIComponent(text.slice(0, 256))}&desp=${encodeURIComponent(desp.slice(0, 10000))}`, res => {
             let rawData = '';
             res.on('data', chunk => {
               rawData += chunk;
@@ -19,7 +19,7 @@ module.exports = app => {
           });
         } else {
           http.get(
-            `http://pushbear.ftqq.com/sub?sendkey=${ftqq_token}&text=${encodeURIComponent(text)}&desp=${desp}`,
+            `http://pushbear.ftqq.com/sub?sendkey=${ftqq_token}&text=${encodeURIComponent(text.slice(0, 256))}&desp=${encodeURIComponent(desp.slice(0, 10000))}`,
             res => {
               let rawData = '';
               res.on('data', chunk => {
