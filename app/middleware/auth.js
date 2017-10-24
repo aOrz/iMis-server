@@ -2,10 +2,10 @@
 module.exports = function auth() {
   // let that = this;
   return async (ctx, next) => {
-    const { token, type } = ctx.request.header;
+    const { token, type, 'X-Hub-Signature': githubToken } = ctx.request.header;
     const options = {};
-    if (type === 'server') {
-      options.server_token = token;
+    if (type === 'server' || githubToken) {
+      options.server_token = token || githubToken;
     } else {
       options.app_token = token;
     }
