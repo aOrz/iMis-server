@@ -3,7 +3,7 @@ const http = require('http');
 
 module.exports = app => {
   class Ftqq extends app.Service {
-    async send(text = '', desp = '', type = 'sc') {
+    async send(text = 'title', desp = '', type = 'sc') {
       await new Promise((resolve, reject) => {
         // console.log(test, 'ghgjkjkj')
         let { ftqq_token } = this.ctx.user;
