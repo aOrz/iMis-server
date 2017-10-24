@@ -6,7 +6,8 @@ module.exports = app => {
       const ctx = this.ctx;
       // const { type } = ctx.params;
       const notice = true;
-      const { action: title = '' } = ctx.request.body;
+      const { repository = {} } = ctx.request.body;
+      const { full_name: title = '' } = repository;
       const logs = JSON.stringify(ctx.request.body);
       // const { , logs = '', title = '' } = ctx.request.body;
       const { userid } = this.ctx.user;
