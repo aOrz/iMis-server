@@ -5,7 +5,8 @@ module.exports = app => {
       const ctx = this.ctx;
       // const { type } = ctx.params;
       const notice = true;
-      const { repository = {} } = ctx.request.body;
+      const { payload = {} } = ctx.request.body;
+      const { repository = {} } = payload;
       const { full_name: title = '' } = repository;
       const logs = JSON.stringify(ctx.request.body);
       // const { , logs = '', title = '' } = ctx.request.body;
