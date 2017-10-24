@@ -1,5 +1,4 @@
 'use strict';
-const moment = require('moment');
 module.exports = app => {
   class githubController extends app.Controller {
     async create() {

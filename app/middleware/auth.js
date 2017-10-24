@@ -2,7 +2,7 @@
 module.exports = function auth() {
   // let that = this;
   return async (ctx, next) => {
-    const { token, type, 'X-Hub-Signature': githubToken } = ctx.request.header;
+    const { token, type, 'x-hub-signature': githubToken } = ctx.request.header;
     const options = {};
     if (type === 'server' || githubToken) {
       options.server_token = token || githubToken;
@@ -16,7 +16,7 @@ module.exports = function auth() {
       };
     } else {
       const user = await ctx.app.mysql.get('user', options);
-      if (token && user) {
+      if (user) {
         ctx.user = user;
         await next();
       } else {
