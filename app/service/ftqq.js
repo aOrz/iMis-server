@@ -8,7 +8,7 @@ module.exports = app => {
         // console.log(test, 'ghgjkjkj')
         let { ftqq_token } = this.ctx.user;
         if (type === 'sc') {
-          http.get(`http://sc.ftqq.com/${ftqq_token}.send?text=${encodeURIComponent(text.slice(0, 256))}&desp=${encodeURIComponent(desp.slice(0, 5700))}`, res => {
+          http.get(`http://sc.ftqq.com/${ftqq_token}.send?text=${encodeURIComponent(text.slice(0, 256))}&desp=${encodeURIComponent(desp.slice(0, 3700))}`, res => {
             let rawData = '';
             res.on('data', chunk => {
               rawData += chunk;

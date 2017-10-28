@@ -6,11 +6,12 @@ module.exports = app => {
       // const { type } = ctx.params;
       const notice = true;
       const { payload = {} } = ctx.request.body;
-      console.log(ctx.request.body);
+   //   console.log(ctx.request.body);
       const { repository = {} } = payload;
       const { full_name: title = 'github' } = repository;
       const logs = JSON.stringify(ctx.request.body);
       // const { , logs = '', title = '' } = ctx.request.body;
+    // console.log(title, logs)
       const { userid } = this.ctx.user;
       if (notice) {
         await ctx.service.ftqq.send(title, logs);
