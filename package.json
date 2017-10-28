@@ -9,6 +9,7 @@
     "egg-scripts": "^2.1.0",
     "getui-rest": "^0.4.7",
     "moment": "^2.19.1",
+    "request": "^2.83.0",
     "tmsg2": "^1.0.1"
   },
   "devDependencies": {

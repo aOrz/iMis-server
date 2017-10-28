@@ -5,13 +5,28 @@ module.exports = app => {
       const ctx = this.ctx;
       // const { type } = ctx.params;
       const notice = true;
-      const { payload = {} } = ctx.request.body;
-   //   console.log(ctx.request.body);
-      const { repository = {} } = payload;
-      const { full_name: title = 'github' } = repository;
-      const logs = JSON.stringify(ctx.request.body);
-      // const { , logs = '', title = '' } = ctx.request.body;
-    // console.log(title, logs)
+      let { payload = {} } = ctx.request.body;
+      payload = JSON.parse(payload);
+      const { action = 'unknow', repository = {}, sender, head_commit } = payload;
+      const { login, avatar_url, html_url: sender_html_url } = sender;
+      let { full_name: title, html_url } = repository;
+      title = title ? title : 'github';
+      title = `${action}:${title}`;
+      let logs = '';
+      if (action !== 'push' && !head_commit) {
+        logs = `[${login}](${sender_html_url})
+        ${action}
+        [${title}](${html_url})
+        ![${login}](${avatar_url})
+        `;
+      } else {
+        let { url, message} = head_commit;
+        logs = `[${login}](${sender_html_url})
+        ${action}
+        [${title}](${html_url})
+        [${message}](${url})
+        `;
+      }
       const { userid } = this.ctx.user;
       if (notice) {
         await ctx.service.ftqq.send(title, logs);
