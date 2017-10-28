@@ -8,7 +8,8 @@
     "egg-mysql": "^3.0.0",
     "egg-scripts": "^2.1.0",
     "getui-rest": "^0.4.7",
-    "moment": "^2.19.1"
+    "moment": "^2.19.1",
+    "tmsg2": "^1.0.1"
   },
   "devDependencies": {
     "autod": "^2.10.1",
