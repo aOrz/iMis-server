@@ -11,7 +11,11 @@ module.exports = app => {
       const { login, avatar_url, html_url: sender_html_url } = sender;
       let { full_name: title, html_url } = repository;
       title = title ? title : 'github';
-      title = `${action}:${title}`;
+      title = `${action}-${title}`;
+      if (login === 'aorz') {
+        this.ctx.body = 'ok';
+        return;
+      }
       let logs = '';
       if (action !== 'push' && !head_commit) {
         logs = `[${login}](${sender_html_url})
@@ -20,7 +24,7 @@ module.exports = app => {
         ![${login}](${avatar_url})
         `;
       } else {
-        let { url, message} = head_commit;
+        const { url, message } = head_commit;
         logs = `[${login}](${sender_html_url})
         ${action}
         [${title}](${html_url})
