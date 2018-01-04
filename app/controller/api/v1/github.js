@@ -12,7 +12,7 @@ module.exports = app => {
       let { full_name: title, html_url } = repository;
       title = title ? title : 'github';
       title = `${action}-${title}`;
-      if (login === 'aorz') {
+      if (login === 'aOrz') {
         this.ctx.body = 'ok';
         return;
       }
