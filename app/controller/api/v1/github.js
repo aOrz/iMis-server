@@ -47,7 +47,7 @@ module.exports = app => {
         userid,
         title,
       });
-      this.ctx.body = JSON.stringify(this.ctx.request.body);
+      this.ctx.body = JSON.stringify({ title, logs });
     }
   }
   return githubController;
