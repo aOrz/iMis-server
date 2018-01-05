@@ -11,7 +11,7 @@ module.exports = app => {
       const { login, avatar_url, html_url: sender_html_url } = sender;
       let { full_name: title, html_url } = repository;
       title = title ? title : 'github';
-      title = `${action}-${title}`;
+      title = `${action} ${title}`;
       if (login === 'aOrz') {
         this.ctx.body = 'ok';
         return;
@@ -19,6 +19,7 @@ module.exports = app => {
       let logs = '';
       if (forkee) {
         const { name, full_name, html_url } = forkee;
+        title = `fork ${name} to ${full_name}`;
         logs = `fork ${name} to [${full_name}](${html_url})`;
       } else if (action !== 'push' && !head_commit) {
         logs = `[${login}](${sender_html_url})
