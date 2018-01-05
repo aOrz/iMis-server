@@ -7,7 +7,7 @@ module.exports = app => {
       const notice = true;
       let { payload = {} } = ctx.request.body;
       payload = JSON.parse(payload);
-      const { action = 'unknow', repository = {}, sender, head_commit } = payload;
+      const { forkee, action = 'unknow', repository = {}, sender, head_commit } = payload;
       const { login, avatar_url, html_url: sender_html_url } = sender;
       let { full_name: title, html_url } = repository;
       title = title ? title : 'github';
@@ -17,7 +17,10 @@ module.exports = app => {
         return;
       }
       let logs = '';
-      if (action !== 'push' && !head_commit) {
+      if (forkee) {
+        const { name, full_name, html_url } = forkee;
+        logs = `fork ${name} to [${full_name}](${html_url})`;
+      } else if (action !== 'push' && !head_commit) {
         logs = `[${login}](${sender_html_url})
         ${action}
         [${title}](${html_url})
