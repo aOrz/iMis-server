@@ -36,7 +36,8 @@
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
-    "reload": "egg-scripts stop && EGG_SERVER_ENV=pro egg-scripts start --daemon"
+    "reload": "egg-scripts stop && EGG_SERVER_ENV=pro egg-scripts start --daemon",
+    "test:auth": "node test/auth-regression.js"
   },
   "ci": {
     "version": "6, 8"

@@ -5,9 +5,9 @@ const request = require('request');
 module.exports = app => {
   class Ftqq extends app.Service {
     async send(text = 'title', desp = '', type = 'sc') {
-      await new Promise((resolve, reject) => {
+      await new Promise(resolve => {
         // console.log(test, 'ghgjkjkj')
-        let { ftqq_token } = this.ctx.user;
+        const { ftqq_token } = this.ctx.user;
         if (type === 'sc') {
           request.post(
             `http://sc.ftqq.com/${ftqq_token}.send`,

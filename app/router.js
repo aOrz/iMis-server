@@ -9,5 +9,5 @@ module.exports = app => {
   app.get('/api/v1/log/:page', 'api.v1.log.getLogBytype');
   app.get('/api/v1/get/log/types', 'api.v1.log.getTypes');
   app.get('/api/v1/send/send', 'api.v1.send.send');
-  
+
 };
