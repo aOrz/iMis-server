@@ -2,7 +2,8 @@
 module.exports = function auth() {
   // let that = this;
   return async (ctx, next) => {
-    const { token: queriesToken } = ctx.queries;
+    const { token: queryTokens } = ctx.queries;
+    const queriesToken = Array.isArray(queryTokens) ? queryTokens[0] : queryTokens;
     const { token, type } = ctx.request.header;
     const options = {};
     if (type === 'server' || queriesToken) {
@@ -10,7 +11,8 @@ module.exports = function auth() {
     } else {
       options.app_token = token;
     }
-    if (!Object.keys(options).length) {
+    const credential = options.server_token || options.app_token;
+    if (typeof credential !== 'string' || !credential.trim()) {
       ctx.body = {
         code: 1,
         error: 'login error,缺少token 或者 type',
